@@ -1,17 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
+import MobilePlayer from './MobilePlayer'
+import SocialMediaMenu from './SocialMediaMenu'
 
-const FooterWrapper = styled.div``
-const Anchor = styled.a``
+const FooterContainer = styled.div`
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+`
 
-const Footer = ({ links }) => (
-  <FooterWrapper>
-    {links.map(({ name, link }) => (
-      <Anchor key={name} href={link} target="_blank" rel="noopener noreferrer">
-        {name}
-      </Anchor>
-    ))}
-  </FooterWrapper>
+const Footer = () => (
+  <FooterContainer>
+    <MobilePlayer />
+    <SocialMediaMenu />
+  </FooterContainer>
 )
 
 export default Footer

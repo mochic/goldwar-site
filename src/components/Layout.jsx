@@ -44,9 +44,8 @@ const FooterWrapper = styled.div`
 const LayoutWrapper = styled.div`
   background: blue;
   display: grid;
-  grid-template-areas: ;
-  grid-template-columns: ;
-  grid-template-rows: ;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: stretch;
 `
 
 const Layout = ({ children }) => (
@@ -88,8 +87,7 @@ const Layout = ({ children }) => (
               <FloatingAudioPlayer />
             </AudioPlayerWrapper> */}
             <FooterWrapper>
-              <MobilePlayer />
-              <SocialMediaMenu />
+              <Footer />
             </FooterWrapper>
           </>
         </ThemeProvider>
