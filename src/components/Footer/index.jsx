@@ -13,16 +13,42 @@ const SocialMediaPanel = styled.div`
   background: ${props => props.theme.colors.primary};
 `
 
-const Footer = styled.div``
+const Footer = styled.div`
+  display: flex;
+`
 
-const stuff = ({
-  site: {
-    siteMetadata: { socialMediaLinks },
-  },
-}) => (
-  <Footer>
-    {SocialMediaLinks.map(socialMediaLink => (
-      <SocialMediaLink key={socialMediaLink.name} {...socialMediaLink} />
-    ))}
-  </Footer>
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query SocialMediaQuery {
+        site {
+          siteMetadata {
+            socialMediaLinks {
+              name
+              uri
+            }
+          }
+        }
+      }
+    `}
+    render={({
+      site: {
+        siteMetadata: { socialMediaLinks },
+      },
+    }) => (
+      <Footer>
+        {socialMediaLinks.map(socialMediaLink => (
+          <SocialMediaPanel>
+            <SocialMediaLink key={socialMediaLink.name} {...socialMediaLink} />
+          </SocialMediaPanel>
+        ))}
+        <AudioPanel>
+          <AudioToggle />
+        </AudioPanel>
+        <AudioPanel>
+          <NextSongButton />
+        </AudioPanel>
+      </Footer>
+    )}
+  />
 )
