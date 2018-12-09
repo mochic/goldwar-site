@@ -14,12 +14,14 @@ import TheEndWAV from '../audio/Goldwar_SONG_MASTER.wav'
 //     color: ${props => props.theme.color};
 //   }
 // `
-const Button = styled.button``
+const Button = styled.button`
+  color: ${props => props.theme.background};
+`
 
 const TrackTitle = styled.span``
 
 const MobilePlayerContainer = styled.div`
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.color};
 `
 
 const MobilePlayer = ({ theme }) => (
@@ -32,28 +34,20 @@ const MobilePlayer = ({ theme }) => (
   >
     <HowlConsumer>
       {({ currentHowlName, isPlaying, nextHowl, pauseHowl, playHowl }) => (
-        <IconContext.Provider
-          value={{
-            size: theme.socialMediaIconSize,
-            className: 'global-class-name',
-          }}
-        >
-          <MobilePlayerContainer>
-            <TrackTitle>{currentHowlName}</TrackTitle>
-            {isPlaying ? (
-              <Button onClick={pauseHowl}>
-                <MdPause />
-              </Button>
-            ) : (
-              <Button onClick={playHowl}>
-                <MdPlayArrow />
-              </Button>
-            )}
-            <Button onClick={nextHowl}>
-              <MdFastForward />
+        <MobilePlayerContainer>
+          {isPlaying ? (
+            <Button onClick={pauseHowl}>
+              <MdPause />
             </Button>
-          </MobilePlayerContainer>
-        </IconContext.Provider>
+          ) : (
+            <Button onClick={playHowl}>
+              <MdPlayArrow />
+            </Button>
+          )}
+          <Button onClick={nextHowl}>
+            <MdFastForward />
+          </Button>
+        </MobilePlayerContainer>
       )}
     </HowlConsumer>
   </HowlProvider>

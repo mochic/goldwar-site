@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 import ReactPlayer from 'react-player'
+import { IconContext } from 'react-icons'
 
 import Footer from './Footer'
 import Header from './Header'
@@ -23,6 +24,11 @@ const BlackoutTheme = {
   color: '#BA2F56',
   colorAlternate: '#FFFDDA',
   socialMediaIconSize: 18,
+  colors: {
+    primary: '#2F30A4',
+    secondary: '#BA2F56',
+    highlight: '#FFFDDA',
+  },
 }
 
 const AudioPlayerWrapper = styled.div`
@@ -79,17 +85,25 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <ThemeProvider theme={BlackoutTheme}>
-          <>
-            <Header siteTitle={data.site.siteMetadata.title} />
-            {/* <TheEndBackgroundImage /> */}
-            <ChildrenWrapper>{children}</ChildrenWrapper>
-            {/* <AudioPlayerWrapper>
+          <IconContext.Provider
+            value={{
+              className: 'global-class-name',
+              size: BlackoutTheme.socialMediaIconSize,
+            }}
+          >
+            <div>
+              <Header siteTitle={data.site.siteMetadata.title} />
+              {/* <TheEndBackgroundImage /> */}
+              <ChildrenWrapper>{children}</ChildrenWrapper>
+              {/* <AudioPlayerWrapper>
               <FloatingAudioPlayer />
             </AudioPlayerWrapper> */}
-            <FooterWrapper>
               <Footer />
-            </FooterWrapper>
-          </>
+              {/* <FooterWrapper>
+              <Footer />
+            </FooterWrapper> */}
+            </div>
+          </IconContext.Provider>
         </ThemeProvider>
       </LayoutWrapper>
     )}

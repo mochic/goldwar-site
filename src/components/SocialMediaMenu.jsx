@@ -46,18 +46,11 @@ export default ({ theme }) => (
         siteMetadata: { socialMediaLinks },
       },
     }) => (
-      <IconContext.Provider
-        value={{
-          className: 'global-class-name',
-          size: theme.socialMediaIconSize,
-        }}
-      >
-        <SocialMediaMenuContainer>
-          {socialMediaLinks.map(socialMediaLink => (
-            <SocialMediaLink key={socialMediaLink.name} {...socialMediaLink} />
-          ))}
-        </SocialMediaMenuContainer>
-      </IconContext.Provider>
+      <SocialMediaMenuContainer>
+        {socialMediaLinks.map(socialMediaLink => (
+          <SocialMediaLink key={socialMediaLink.name} {...socialMediaLink} />
+        ))}
+      </SocialMediaMenuContainer>
     )}
   />
 )
