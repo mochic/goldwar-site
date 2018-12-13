@@ -6,11 +6,116 @@ module.exports = {
       { name: 'events', link: '/events' },
     ],
     socialMediaLinks: [
-      { name: 'facebook', uri: 'https://www.facebook.com' },
-      { name: 'twitter', uri: 'https://www.twitter.com' },
       { name: 'instagram', uri: 'https://www.instagram.com' },
+      { name: 'twitter', uri: 'https://www.twitter.com' },
+      { name: 'facebook', uri: 'https://www.facebook.com' },
     ],
     events: [
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
       {
         date: new Date(2018, 11, 25),
         link: {

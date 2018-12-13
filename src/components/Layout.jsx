@@ -5,17 +5,22 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 import ReactPlayer from 'react-player'
 import { IconContext } from 'react-icons'
+import { HowlProvider } from './Howl.context'
 
-import Footer from './Footer'
-import Header from './Header'
-import Menu from './Menu'
-import TheEndBackgroundImage from './TheEndBackgroundImage'
-import StickyPlayer from './StickyPlayer'
-import AudioPlayer from './AudioPlayer'
-import ExpandableAudioPlayer from './ExpandableAudioPlayer'
-import FloatingAudioPlayer from './FloatingAudioPlayer'
-import SocialMediaMenu from './SocialMediaMenu'
-import MobilePlayer from './MobilePlayer'
+import Footer, { FooterContainer } from './Footer'
+import Header, { HeaderContainer } from './Header'
+// import Menu from './Menu'
+// import TheEndBackgroundImage from './TheEndBackgroundImage'
+// import StickyPlayer from './StickyPlayer'
+// import AudioPlayer from './AudioPlayer'
+// import ExpandableAudioPlayer from './ExpandableAudioPlayer'
+// import FloatingAudioPlayer from './FloatingAudioPlayer'
+// import SocialMediaMenu from './SocialMediaMenu'
+// import MobilePlayer from './MobilePlayer'
+
+import BlackoutWAV from '../audio/Blackout.wav'
+import DrunkAgainWAV from '../audio/Drunk Again.wav'
+import TheEndWAV from '../audio/Goldwar_SONG_MASTER.wav'
 
 /* react-ive band website with dynamic theming */
 
@@ -35,23 +40,70 @@ const AudioPlayerWrapper = styled.div`
   background: yellow;
 `
 
-const ChildrenWrapper = styled.div`
+const ChildrenContainer = styled.div`
   z-index: 1;
-  background: teal;
+  background: none;
 `
 
 const FooterWrapper = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100% !important;
 `
 
-const LayoutWrapper = styled.div`
+// const LayoutWrapper = styled.div`
+//   background: blue;
+//   display: grid;
+//   grid-template-rows: repeat(3, auto);
+//   grid-template-columns: 1fr;
+//   justify-items: stretch;
+
+//   ${FooterContainer} {
+//     position: fixed;
+//     bottom: 0 !important;
+//     left: 0 !important;
+//     width: 100% !important;
+//     grid-area: footer;
+//   }
+// `
+
+// const LayoutWrapper = styled.div``
+
+// export const LayoutContainer = styled.div`
+//   align-items: stretch;
+//   background: blue;
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   grid-template-rows: repeat(3, auto);
+//   justify-items: stretch;
+// `
+
+const LayoutContainer = styled.div`
   background: blue;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  justify-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+
+  ${HeaderContainer} {
+    flex: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  ${ChildrenContainer} {
+    flex: 1;
+  }
+
+  ${FooterContainer} {
+    bottom: 0;
+    flex: 1;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
 `
 
 const Layout = ({ children }) => (
@@ -74,16 +126,13 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <LayoutWrapper>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <html lang="en" />
-        </Helmet>
+      <HowlProvider
+        playList={[
+          { name: 'blackout', sources: [BlackoutWAV] },
+          { name: 'drunk again', sources: [DrunkAgainWAV] },
+          { name: 'the end', sources: [TheEndWAV] },
+        ]}
+      >
         <ThemeProvider theme={BlackoutTheme}>
           <IconContext.Provider
             value={{
@@ -91,21 +140,24 @@ const Layout = ({ children }) => (
               size: BlackoutTheme.socialMediaIconSize,
             }}
           >
-            <div>
+            <Helmet
+              title={data.site.siteMetadata.title}
+              meta={[
+                { name: 'description', content: 'Sample' },
+                { name: 'keywords', content: 'sample, something' },
+              ]}
+            >
+              <html lang="en" />
+            </Helmet>
+            <LayoutContainer>
               <Header siteTitle={data.site.siteMetadata.title} />
               {/* <TheEndBackgroundImage /> */}
-              <ChildrenWrapper>{children}</ChildrenWrapper>
-              {/* <AudioPlayerWrapper>
-              <FloatingAudioPlayer />
-            </AudioPlayerWrapper> */}
+              <ChildrenContainer>{children}</ChildrenContainer>
               <Footer />
-              {/* <FooterWrapper>
-              <Footer />
-            </FooterWrapper> */}
-            </div>
+            </LayoutContainer>
           </IconContext.Provider>
         </ThemeProvider>
-      </LayoutWrapper>
+      </HowlProvider>
     )}
   />
 )

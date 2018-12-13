@@ -6,15 +6,26 @@ import NextSongButton from './NextSongButton'
 import SocialMediaLink from './SocialMediaLink'
 
 const AudioPanel = styled.div`
+  align-items: center;
   background: ${props => props.theme.colors.secondary};
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `
 
 const SocialMediaPanel = styled.div`
+  align-items: center;
   background: ${props => props.theme.colors.primary};
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `
 
-const Footer = styled.div`
+export const FooterContainer = styled.div`
+  align-items: stretch;
+  align-content: stretch;
   display: flex;
+  justify-content: space-evenly;
 `
 
 export default () => (
@@ -36,9 +47,9 @@ export default () => (
         siteMetadata: { socialMediaLinks },
       },
     }) => (
-      <Footer>
+      <FooterContainer>
         {socialMediaLinks.map(socialMediaLink => (
-          <SocialMediaPanel>
+          <SocialMediaPanel key={`${socialMediaLink.name}-panel`}>
             <SocialMediaLink key={socialMediaLink.name} {...socialMediaLink} />
           </SocialMediaPanel>
         ))}
@@ -48,7 +59,7 @@ export default () => (
         <AudioPanel>
           <NextSongButton />
         </AudioPanel>
-      </Footer>
+      </FooterContainer>
     )}
   />
 )

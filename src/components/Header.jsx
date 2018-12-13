@@ -2,24 +2,18 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-const HeaderContainer = styled.div`
-background: ${props => props.theme.background}
-width: 100%;
-`
 const Title = styled.h1`
   margin: 0;
-  color: #fffdda;
+  color: ${props => props.theme.colors.highlight};
 `
 
-const IndexLink = styled(Link)`
-  text-decoration: none;
+export const HeaderContainer = styled.div`
+  background: none;
 `
 
 const Header = ({ siteTitle }) => (
   <HeaderContainer>
-    <Title>
-      <IndexLink to="/">{siteTitle}</IndexLink>
-    </Title>
+    <Title>{siteTitle}</Title>
   </HeaderContainer>
 )
 
