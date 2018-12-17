@@ -1,23 +1,37 @@
 import React, { SFC } from 'react'
 import styled from 'styled-components'
 
+import { MdLaunch } from 'react-icons/md'
+
 export interface EventProps {
-  date: string
+  date: Date
   link: {
     name: string
     link: string
   }
 }
 
-const EventWrapper = styled.div``
+const EventDate = styled.div`
+  color: ${props => props.theme.colors.highlight};
+`
+const EventLink = styled.a`
+  color: ${props => props.theme.colors.highlight};
+`
 
-const Event = ({ date, link: { name, link } }) => (
-  <EventWrapper>
-    <div>{date}</div>
-    <a href={link} target="_blank" rel="noopener noreferrer">
-      {name}
-    </a>
-  </EventWrapper>
+const EventContainer = styled.div`
+  color: ${props => props.theme.colors.highlight};
+  display: flex;
+  justify-content: flex-end;
+`
+
+const Event: SFC<EventProps> = ({ date, link: { name, link } }) => (
+  <EventContainer>
+    <EventDate>{date}</EventDate>
+    {name}
+    <EventLink href={link} target="_blank" rel="noopener noreferrer">
+      <MdLaunch />
+    </EventLink>
+  </EventContainer>
 )
 
 export default Event

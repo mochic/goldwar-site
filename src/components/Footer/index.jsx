@@ -53,12 +53,12 @@ export default () => (
             <SocialMediaLink key={socialMediaLink.name} {...socialMediaLink} />
           </SocialMediaPanel>
         ))}
-        <AudioPanel>
+        {/* <AudioPanel>
           <AudioToggle />
         </AudioPanel>
         <AudioPanel>
           <NextSongButton />
-        </AudioPanel>
+        </AudioPanel> */}
       </FooterContainer>
     )}
   />

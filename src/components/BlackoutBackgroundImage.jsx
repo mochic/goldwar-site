@@ -11,9 +11,9 @@ export default () => (
   <StaticQuery
     query={graphql`
       query {
-        blackoutImage: file(relativePath: { eq: "blackout-image.jpg" }) {
+        blackoutImage: file(relativePath: { eq: "blackout-cropped-2.jpeg" }) {
           childImageSharp {
-            fluid(maxWidth: 300) {
+            fluid(maxWidth: 375) {
               ...GatsbyImageSharpFluid
             }
           }

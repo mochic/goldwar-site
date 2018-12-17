@@ -2,13 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { keyframes, ThemeProvider } from 'styled-components'
 import ReactPlayer from 'react-player'
 import { IconContext } from 'react-icons'
 import { HowlProvider } from './Howl.context'
 
 import Footer, { FooterContainer } from './Footer'
 import Header, { HeaderContainer } from './Header'
+import BlackoutBackgroundImage from './BlackoutBackgroundImage'
+import ImageThing from './ImageThing'
 // import Menu from './Menu'
 // import TheEndBackgroundImage from './TheEndBackgroundImage'
 // import StickyPlayer from './StickyPlayer'
@@ -22,17 +24,22 @@ import BlackoutWAV from '../audio/Blackout.wav'
 import DrunkAgainWAV from '../audio/Drunk Again.wav'
 import TheEndWAV from '../audio/Goldwar_SONG_MASTER.wav'
 
+import AudioActionButton from './AudioActionButton'
+
 /* react-ive band website with dynamic theming */
 
 const BlackoutTheme = {
-  background: '#2F30A4',
+  background: '#A35558',
   color: '#BA2F56',
   colorAlternate: '#FFFDDA',
   socialMediaIconSize: 18,
   colors: {
-    primary: '#2F30A4',
-    secondary: '#BA2F56',
+    primary: '#4f4a7d',
+    secondary: '#A25457',
     highlight: '#FFFDDA',
+  },
+  sizes: {
+    actionButton: { height: 52, width: 52 },
   },
 }
 
@@ -78,8 +85,53 @@ const FooterWrapper = styled.div`
 //   justify-items: stretch;
 // `
 
+const ActionButton = styled.button`
+  color: yellow;
+`
+
+const ActionButtonContainer = styled.div`
+  position: fixed
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+`
+
+const PanningKeyFrames = keyframes`
+0% {
+  -webkit-transform: translate(0px, 0px);
+  opacity: 0;
+}
+25% {
+  -webkit-transform: translate(-50px, -85px);
+  opacity: 0;
+  -webkit-animation-timing-function: ease-out;
+}
+40%{
+  -webkit-transform: translate(-25px, -65px);
+  opacity: 1;
+  -webkit-animation-timing-function: linear;
+}
+91% {
+  -webkit-transform: translate(-100px, -200px);
+  opacity: 1;
+  -webkit-animation-timing-function: ease-in;
+}
+100% {
+  -webkit-transform: translate(-125px, -250px);
+  opacity: 0;
+}
+`
+
+const BackgroundImageContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  animation: ${PanningKeyFrames} 10s ease-in-out 0s infinite;
+`
+
 const LayoutContainer = styled.div`
-  background: blue;
+  background: none;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -88,8 +140,14 @@ const LayoutContainer = styled.div`
     flex: 1;
     position: fixed;
     top: 0;
-    left: 0;
-    z-index: 2;
+    right: 0;
+    z-index: 10000;
+    width: 100%;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(50, 50, 50, 0.5);
   }
 
   ${ChildrenContainer} {
@@ -150,10 +208,17 @@ const Layout = ({ children }) => (
               <html lang="en" />
             </Helmet>
             <LayoutContainer>
+              <BackgroundImageContainer>
+                <ImageThing />
+              </BackgroundImageContainer>
               <Header siteTitle={data.site.siteMetadata.title} />
               {/* <TheEndBackgroundImage /> */}
               <ChildrenContainer>{children}</ChildrenContainer>
-              <Footer />
+              <AudioActionButton />
+              {/* <ActionButtonContainer>
+                <ActionButton />
+              </ActionButtonContainer> */}
+              {/* <Footer /> */}
             </LayoutContainer>
           </IconContext.Provider>
         </ThemeProvider>

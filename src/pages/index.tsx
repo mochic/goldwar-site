@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: yellow;
+    background: #4f4a7d;
   }
 `
 
@@ -23,20 +23,17 @@ const EventsTitle = styled.h3`
 `
 
 const Events = styled.div`
-  background: yellow;
+  background: none;
+  margin-left: 24%;
+  font-family: 'sue ellen francisco';
 `
 
 const ContentContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-
-  ${Events} {
-    grid-column-start: 3;
-    grid-column-end: 7;
-    grid-row-start: 4;
-    grid-row-end: 20;
-  }
+  margin-bottom: 15%;
+  margin-left: 0%;
+  margin-right: 30%;
+  margin-top: 70%;
+  background: rgba(50, 50, 50, 0.5);
 `
 
 export const query = graphql`
@@ -56,7 +53,7 @@ export const query = graphql`
 `
 
 interface EventInterface {
-  date: string
+  date: Date
   link: {
     name: string
     link: string

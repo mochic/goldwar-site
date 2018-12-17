@@ -137,6 +137,83 @@ module.exports = {
           link: 'http://bluemoon.com',
         },
       },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
+      {
+        date: new Date(2018, 11, 25),
+        link: {
+          name: 'Blue Moon',
+          link: 'http://bluemoon.com',
+        },
+      },
     ],
     soundcloud: {
       albums: [
@@ -171,6 +248,12 @@ module.exports = {
     },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: [`sriracha`, `sue ellen francisco`],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
