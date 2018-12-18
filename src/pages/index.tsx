@@ -2,8 +2,11 @@ import React, { SFC } from 'react'
 import { graphql } from 'gatsby'
 import styled, { createGlobalStyle } from 'styled-components'
 import Image from '../components/TheEndBackgroundImage'
-import Layout from '../components/Layout'
+// import Layout from '../components/Layout'
 import EventList from '../components/EventList'
+
+// import Layout from '../components/PanningBackgroundLayout'
+import Layout from '../components/ParallaxLayout'
 
 // to style the body component that wraps pages https://twitter.com/gatsbyjs/status/960546383445897222
 const GlobalStyle = createGlobalStyle`

@@ -131,7 +131,6 @@ const BackgroundImageContainer = styled.div`
 `
 
 const LayoutContainer = styled.div`
-  background: none;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
