@@ -13,6 +13,9 @@ export class HowlProvider extends Component {
         name,
         howl: new Howl({ src, html5: true }),
       })),
+      elapsedTime: 0,
+      duration: 0,
+      isPlaying: false,
     }
 
     // this.currentHowl = this.currentHowl.bind(this)
@@ -45,6 +48,7 @@ export class HowlProvider extends Component {
     const nextIndex = (this.state.howlIndex + 1) % this.state.howls.length
     this.setState({
       howlIndex: nextIndex,
+      elapsedTime: 0,
     })
     if (wasPlaying) {
       // this.playHowl() do not use currentIndex as it assumes state will get immediately updated which it wont...
@@ -52,15 +56,21 @@ export class HowlProvider extends Component {
     }
   }
 
-  pauseHowl = index => this.getHowl(index).pause()
+  pauseHowl = index => {
+    this.getHowl(index).pause()
+    clearInterval(this.updateInterval)
+    this.setState({ isPlaying: false })
+  }
 
   playHowl = index => {
     if (!this.getHowl(index).playing()) {
       this.getHowl(index).play()
     }
+    this.updateInterval = setInterval(this.updateStatus, 1000)
+    this.setState({ isPlaying: true, elapsedTime: 0 })
   }
 
-  previousHowl() {
+  previousHowl = () => {
     const wasPlaying = this.currentHowl().howl.playing()
     this.stopHowl()
 
@@ -70,6 +80,7 @@ export class HowlProvider extends Component {
         : this.state.howls.length - 1
     this.setState({
       howlIndex: previousIndex,
+      elapsedTime: 0,
     })
 
     if (wasPlaying) {
@@ -77,7 +88,18 @@ export class HowlProvider extends Component {
     }
   }
 
-  stopHowl = index => this.getHowl(index).stop()
+  stopHowl = index => {
+    this.getHowl(index).stop()
+    clearInterval(this.updateInterval)
+    this.setState({ isPlaying: false, elapsedTime: 0 })
+  }
+
+  updateStatus = () => {
+    this.setState({
+      elapsedTime: this.currentHowl().howl.seek(),
+      duration: this.currentHowl().howl.duration(),
+    })
+  }
 
   render() {
     return (
@@ -85,12 +107,14 @@ export class HowlProvider extends Component {
         value={{
           currentHowlName: this.currentHowl().name,
           currentHowl: this.currentHowl,
-          isPlaying: this.currentHowl().howl.playing(),
+          isPlaying: this.state.isPlaying,
           nextHowl: this.nextHowl,
           pauseHowl: this.pauseHowl,
           playHowl: this.playHowl,
           previousHowl: this.previousHowl,
           stopHowl: this.stopHowl,
+          duration: this.state.duration,
+          elapsedTime: this.state.elapsedTime || 0,
         }}
       >
         {this.props.children}

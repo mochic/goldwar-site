@@ -1,11 +1,17 @@
 import React from 'react'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
-
+import { HowlProvider } from './Howl.context'
 import { Parallax, ParallaxLayer } from 'react-spring/addons'
 
 import ImageThing from './ImageThing'
-import { MdPlayArrow } from 'react-icons/md'
+import { MdPlayArrow, MdHeadset } from 'react-icons/md'
 import Logo from './Logo'
+import MobilePlayer from './MobilePlayer'
+import AudioPlayer from './Audio'
+
+import BlackoutWAV from '../audio/Blackout.wav'
+import DrunkAgainWAV from '../audio/Drunk Again.wav'
+import TheEndWAV from '../audio/Goldwar_SONG_MASTER.wav'
 
 const BlackoutTheme = {
   background: '#A35558',
@@ -44,7 +50,157 @@ const Player = styled.div``
 
 const LandingPage = styled.div``
 
-const LogoContainer = styled.div``
+const DrunkKeys = keyframes`
+0%{
+  left: 0px;
+  top: 0px;		
+  opacity: 0.5;
+}
+
+20%{
+  left: 1px;
+  top: 1px;		
+  opacity: 0.7;
+}
+
+24%{
+  left: -5px;
+  top: -5px;	
+  opacity: 0.7;
+}
+
+26%{
+  left: 2px;
+  top: 2px;		
+  opacity: 0.3;
+}
+
+28%{
+  left: 5px;
+  top: 5px;		
+  opacity: 0.7;
+}
+
+30%{
+  left: -8px;
+  top: -8px;		
+  opacity: 0.4;
+}
+
+60%{
+  left: 2px;
+  top: 2px;		
+  opacity: 0.8;
+}
+
+62%{
+  left: 6px;
+  top: 6px;		
+  opacity: 0.2;
+}
+
+65%{
+  left: -2px;
+  top: -2px;		
+  opacity: 0.8;
+}
+
+67%{
+  left: 1px;
+  top: 1px;		
+  opacity: 0.4;
+}
+
+80%{
+  left: 1px;
+  top: 1px;		
+  opacity: 0.9;
+}
+
+85%{
+  left: 2px;
+  top: 2px;		
+  opacity: 0.3;
+}
+
+88%{
+  left: 5px;
+  top: 5px;		
+  opacity: 0.5;
+}
+
+90%{
+  left: 0px;
+  top: 0px;		
+  opacity: 0.7;
+}
+`
+
+const LogoSub0 = styled.div`
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100% !important;
+`
+const LogoSub1 = styled.div`
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100% !important;
+  animation: ${DrunkKeys} 15s;
+`
+
+const BlinkKeys = styled.div`
+  0% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 667px;
+  }
+  30% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 667px;
+  }
+  32% {
+    margin-top: 333.5px;
+    margin-bottom: 333.5px;
+    height: 0px;
+  }
+  36% {
+    margin-top: 333.5px;
+    margin-bottom: 333.5px;
+    height: 0px;
+  }
+  38% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 333.5px;
+  }
+  60% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 333.5px;
+  }
+  62% {
+    margin-top: 333.5px;
+    margin-bottom: 333.5px;
+    height: 0px;
+  }
+  69% {
+    margin-top: 333.5px;
+    margin-bottom: 333.5px;
+    height: 0px;
+  }
+  72% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 667px;
+  }
+`
+
+const LogoContainer = styled.div`
+  position: relative;
+`
 
 const PlayArrow = styled(MdPlayArrow)`
   position: absolute;
@@ -52,33 +208,42 @@ const PlayArrow = styled(MdPlayArrow)`
 
 const HexButton = styled.div`
   position: relative;
-  width: 56px;
-  height: 32.33px;
-  background-color: #f4ed3a;
-  margin: 16.17px 0;
+  width: 54px;
+  height: 31.18px;
+  background-color: black;
+  margin: 15.59px 0;
+  border-left: solid 5px yellow;
+  border-right: solid 5px yellow;
 
   &:before,
   &:after {
     content: '';
     position: absolute;
-    width: 0;
-    border-left: 28px solid transparent;
-    border-right: 28px solid transparent;
+    z-index: 1;
+    width: 38.18px;
+    height: 38.18px;
+    -webkit-transform: scaleY(0.5774) rotate(-45deg);
+    -ms-transform: scaleY(0.5774) rotate(-45deg);
+    transform: scaleY(0.5774) rotate(-45deg);
+    background-color: inherit;
+    left: 2.9081px;
   }
 
   &:before {
-    bottom: 100%;
-    border-bottom: 16.17px solid #f4ed3a;
+    top: -19.0919px;
+    border-top: solid 7.0711px yellow;
+    border-right: solid 7.0711px yellow;
   }
 
   &:after {
-    top: 100%;
-    width: 0;
-    border-top: 16.17px solid #f4ed3a;
+    bottom: -19.0919px;
+    border-bottom: solid 7.0711px yellow;
+    border-left: solid 7.0711px yellow;
   }
+
   ${PlayArrow} {
     margin: 14% 36%;
-    color: black;
+    color: yellow;
   }
 `
 
@@ -86,8 +251,7 @@ const PlayerContainer = styled.div``
 
 const Header = styled.div`
   color: ${props => props.theme.colors.highlight};
-  background: black;
-
+  background: #000000; /* fallback for old browsers */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,7 +259,7 @@ const Header = styled.div`
   height: 100% !important;
 
   ${LogoContainer} {
-    margin-bottom: 20%; /* sadly only way to do this... */
+    margin-bottom: 50%; /* sadly only way to do this... */
   }
 
   ${PlayerContainer} {
@@ -143,38 +307,93 @@ const BackgroundImageContainer = styled.div`
   animation: ${PanKeys} 10s ease-in-out 0s infinite;
 `
 
+const SimpleButton = styled.button`
+  min-width: 44px;
+  min-height; 44px;
+  border-radius: 100%;
+  background: black;
+  border: 1px solid yellow;
+
+  ${PlayArrow} {
+    color: yellow;
+  }
+`
+
+const PlayHeadset = styled(MdHeadset)`
+  color: yellow;
+`
+
+const PlayButton = styled.button`
+  align-content: center;
+  background: none;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+`
+
+const AudioPlayerContainer = styled.div`
+  bottom: 8px;
+  left: 8px;
+  position: fixed;
+  width: 150px;
+`
+
 export default ({ children }) => (
-  <ThemeProvider theme={BlackoutTheme}>
-    <StyledParallax pages={3}>
-      <ParallaxLayer offset={1} speed={0} factor={3}>
-        <BackgroundImageContainer>
-          <ImageThing />
-        </BackgroundImageContainer>
-      </ParallaxLayer>
-      <ParallaxLayer offset={0} speed={0.1} factor={1}>
-        <Header>
-          <LogoContainer>
-            <Logo />
-          </LogoContainer>
-          <PlayerContainer>
-            <Player>
-              <HexButton>
-                <PlayArrow />
-              </HexButton>
-            </Player>
-          </PlayerContainer>
-        </Header>
-        {/* <Header>
+  <HowlProvider
+    playList={[
+      { name: 'blackout', sources: [BlackoutWAV] },
+      { name: 'drunk again', sources: [DrunkAgainWAV] },
+      { name: 'the end', sources: [TheEndWAV] },
+    ]}
+  >
+    <ThemeProvider theme={BlackoutTheme}>
+      <div>
+        <StyledParallax pages={3}>
+          <ParallaxLayer offset={1} speed={0} factor={3}>
+            <BackgroundImageContainer>
+              <ImageThing />
+            </BackgroundImageContainer>
+          </ParallaxLayer>
+          <ParallaxLayer offset={0} speed={0.1} factor={1}>
+            <Header>
+              <LogoContainer>
+                <LogoSub0>
+                  <Logo />
+                </LogoSub0>
+                <LogoSub1>
+                  <Logo />
+                </LogoSub1>
+              </LogoContainer>
+              {/* <PlayButton>
+              <PlayHeadset size={22} />
+            </PlayButton> */}
+              {/* <SimpleButton /> */}
+              {/* <PlayerContainer>
+              <Player>
+                <HexButton>
+                  <PlayArrow />
+                </HexButton>
+              </Player>
+              <MobilePlayer />
+            </PlayerContainer> */}
+            </Header>
+            {/* <Header>
           
           <Title>Goldwar</Title>
           <Player>
             
           </Player>
         </Header> */}
-      </ParallaxLayer>
-      <ParallaxLayer offset={1.1} speed={0.4}>
-        {children}
-      </ParallaxLayer>
-    </StyledParallax>
-  </ThemeProvider>
+          </ParallaxLayer>
+          <ParallaxLayer offset={1.1} speed={0.4}>
+            {children}
+          </ParallaxLayer>
+        </StyledParallax>
+        <AudioPlayerContainer>
+          <AudioPlayer />
+        </AudioPlayerContainer>
+      </div>
+    </ThemeProvider>
+  </HowlProvider>
 )

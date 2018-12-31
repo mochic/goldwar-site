@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const EventsTitle = styled.h3`
+  padding: 0;
+  margin: 0;
   color: ${props => props.theme.colors.highlight};
 `
 
@@ -37,7 +39,12 @@ const ContentContainer = styled.div`
   margin-right: 30%;
   margin-top: 70%;
   background: rgba(50, 50, 50, 0.5);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 `
+
+const Outer = styled.div``
 
 export const query = graphql`
   query EventsQuery {
@@ -82,14 +89,12 @@ const IndexPage: SFC<IndexPageProps> = ({
 }) => (
   <>
     <GlobalStyle />
-    <Layout>
-      <ContentContainer>
-        <Events>
-          <EventsTitle>events</EventsTitle>
-          <EventList events={events} />
-        </Events>
-      </ContentContainer>
-    </Layout>
+    <ContentContainer>
+      <Events>
+        <EventsTitle>events</EventsTitle>
+        <EventList events={events.slice(0, 4)} />
+      </Events>
+    </ContentContainer>
   </>
 ) // the fragment is important for coupling GlobalStyle with Layout but a div isnt necessary after
 

@@ -1,9 +1,16 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import Layout from '../components/Layout'
+const AboutContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+`
 
 const About = () => (
-  <Layout>
+  <AboutContainer>
     <p>This is some sample text about a seattle-based band.</p>
-  </Layout>
+  </AboutContainer>
 )
+
+export default About
