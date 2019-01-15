@@ -12,6 +12,17 @@ const ControlContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 5px;
 `
+
+const ButtonsContainer = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  button + button {
+    margin-left: 8px;
+  }
+` // we kinda just assume they're buttons :(...
+
 const PlayerContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,8 +33,10 @@ const PlayerContainer = styled.div`
 export default () => (
   <PlayerContainer>
     <ControlContainer>
-      <PlayToggle />
-      <NextButton />
+      <ButtonsContainer>
+        <PlayToggle />
+        <NextButton />
+      </ButtonsContainer>
       <TrackTitle />
     </ControlContainer>
     <ProgressBar />

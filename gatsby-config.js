@@ -254,7 +254,6 @@ module.exports = {
         fonts: [`sriracha`, `sue ellen francisco`, `major mono display`],
       },
     },
-    `gatsby-plugin-layout`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

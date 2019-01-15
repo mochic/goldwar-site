@@ -14,7 +14,7 @@ export default () => (
         blackoutImage: file(relativePath: { eq: "blackout-cropped-2.jpeg" }) {
           childImageSharp {
             fluid(maxWidth: 375) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
         }

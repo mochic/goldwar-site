@@ -33,18 +33,30 @@ const Events = styled.div`
   font-family: 'sue ellen francisco';
 `
 
+// const ContentContainer = styled.div`
+//   margin-bottom: 15%;
+//   margin-left: 0%;
+//   margin-right: 30%;
+//   margin-top: 70%;
+//   background: rgba(50, 50, 50, 0.5);
+//   height: 100%;
+//   width: 100%;
+//   overflow: scrollable;
+// `
+
 const ContentContainer = styled.div`
-  margin-bottom: 15%;
-  margin-left: 0%;
-  margin-right: 30%;
-  margin-top: 70%;
-  background: rgba(50, 50, 50, 0.5);
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+  overflow: scrollable;
 `
 
-const Outer = styled.div``
+const Body0 = styled.div`
+  background: green;
+  height: 100vh;
+`
+
+const Body1 = styled.div`
+  background: yellow;
+  height: 100vh;
+`
 
 export const query = graphql`
   query EventsQuery {
@@ -90,10 +102,12 @@ const IndexPage: SFC<IndexPageProps> = ({
   <>
     <GlobalStyle />
     <ContentContainer>
-      <Events>
+      {/* <Events>
         <EventsTitle>events</EventsTitle>
         <EventList events={events.slice(0, 4)} />
-      </Events>
+      </Events> */}
+      <Body0 />
+      <Body1 />
     </ContentContainer>
   </>
 ) // the fragment is important for coupling GlobalStyle with Layout but a div isnt necessary after

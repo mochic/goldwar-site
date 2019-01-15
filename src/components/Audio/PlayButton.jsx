@@ -12,10 +12,12 @@ const PlayButton = styled(IconButton)``
 
 export default () => (
   <HowlConsumer>
-    {({ playHowl }) => (
-      <PlayButton onClick={playHowl}>
-        <PlayArrow />
-      </PlayButton>
-    )}
+    {({ playHowl }) => {
+      return (
+        <PlayButton onClick={playHowl}>
+          <PlayArrow />
+        </PlayButton>
+      )
+    }}
   </HowlConsumer>
 )

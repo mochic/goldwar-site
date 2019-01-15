@@ -15,21 +15,29 @@ import Img from 'gatsby-image'
 
 // obviously this is crazy...but maybe its better to code crazy and then retract it back for stuff like this...
 const PanningKeyFrames = keyframes`
-    0% {
-        top: 0px;
-    }
-    25% {
-        top: 1000px;
-    }
-    50% {
-        top: 50px;
-    }
-    75% {
-        top: 200px;
-    }
-    100% {
-        top: 40px;
-    }
+0% {
+  -webkit-transform: translate(0px, 0px);
+  opacity: 1;
+}
+25% {
+  -webkit-transform: translate(-50px, -85px);
+  opacity: 1;
+  -webkit-animation-timing-function: ease-out;
+}
+40%{
+  -webkit-transform: translate(-25px, -65px);
+  opacity: 1;
+  -webkit-animation-timing-function: linear;
+}
+91% {
+  -webkit-transform: translate(-10px, -20px);
+  opacity: 1;
+  -webkit-animation-timing-function: ease-in;
+}
+100% {
+  -webkit-transform: translate(-125px, 50px);
+  opacity: 1;
+}
 `
 
 // const KeyFrameTest = keyframes`
@@ -40,7 +48,9 @@ const PanningKeyFrames = keyframes`
 //         width: 100%;
 //     }
 // `
-const PanningImage = styled(Img)``
+const PanningImage = styled(Img)`
+  animation: ${PanningKeyFrames} 10s infinite;
+`
 
 const query = graphql`
   query {

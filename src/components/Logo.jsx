@@ -12,7 +12,7 @@ const query = graphql`
     logo: file(relativePath: { eq: "logo.png" }) {
       childImageSharp {
         fluid(maxWidth: 375) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
