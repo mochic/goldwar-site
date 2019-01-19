@@ -251,7 +251,15 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
-        fonts: [`sriracha`, `sue ellen francisco`, `major mono display`],
+        fonts: [
+          `sriracha`,
+          `sue ellen francisco`,
+          `major mono display`,
+          `karla`,
+          `work sans`,
+          `monoton`,
+          `frijole`,
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

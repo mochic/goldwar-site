@@ -44,12 +44,51 @@ const DateContainer = styled.div`
   }
 `
 
+// const DateContainer = styled.div`
+//   align-items: center;
+//   border: 1px solid ${props => props.theme.colors.highlight};
+//   display: grid;
+//   justify-items: center;
+//   height: 20%;
+
+//   background: transparent;
+//   padding: 1rem 1rem;
+//   margin: 0 1rem;
+//   transition: all 0.5s ease;
+//   color: #41403e;
+//   font-size: 2rem;
+//   letter-spacing: 1px;
+//   outline: none;
+//   box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
+//   border-radius: 255px 15px 225px 15px/15px 225px 15px;
+//   ${DayContainer} {
+//     grid-column-start: 2;
+//     grid-column-end: 2;
+//     grid-row-start: 1;
+//     grid-row-end: 1;
+//   }
+//   ${MonthContainer} {
+//     grid-column-start: 1;
+//     grid-column-end: 1;
+//     grid-row-start: 1;
+//     grid-row-end: 1;
+//   }
+//   ${YearContainer} {
+//     grid-column-start: 1;
+//     grid-column-end: 3;
+//     grid-row-start: 2;
+//     grid-row-end: 2;
+//   }
+// `
+
 const CurrentYearDateContainer = styled.div`
   align-items: center;
   border: 1px solid ${props => props.theme.colors.highlight};
   display: grid;
   justify-items: center;
   width: 20%;
+
+  color: ${props => props.theme.colors.highlight};
 
   ${DayContainer} {
     grid-column-start: 3;

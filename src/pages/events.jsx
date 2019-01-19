@@ -8,14 +8,14 @@ import BlackoutBackgroundImage from '../components/BlackoutBackgroundImage'
 import ImageThing from '../components/ImageThing'
 import EventsList from '../components/EventsTempNewest'
 
-const BackgroundImageContainer = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-`
+// const BackgroundImageContainer = styled.div`
+//   position: fixed;
+//   top: 0px;
+//   left: 0px;
+//   z-index: -1;
+//   height: 100%;
+//   width: 100%;
+// `
 
 const EventsHeader = styled.h1`
   padding-left: 8%;
@@ -30,7 +30,7 @@ const EventsListContainer = styled.div`
 
 const EventsContainer = styled.div`
   color: ${props => props.theme.colors.highlight};
-  font-family: ${props => props.theme.fonts.primary};
+  font-family: 'karla';
   height: 100%;
   width: 100%;
 `
@@ -41,8 +41,12 @@ const HeaderMenu = styled.button`
   color: ${props => props.theme.colors.highlight};
   padding: 2%;
 `
+const HeaderIndexLink = styled.div`
+  padding: 2%;
+`
 const HeaderTitle = styled.div`
   padding: 2%;
+  font-size: 26px;
 `
 
 const HeaderContainer = styled.div`
@@ -56,25 +60,22 @@ const HeaderContainer = styled.div`
 
 const Header = () => (
   <HeaderContainer>
-    <HeaderTitle>goldwar</HeaderTitle>
+    <HeaderIndexLink>goldwar</HeaderIndexLink>
+    <HeaderTitle>events</HeaderTitle>
     <HeaderMenu>
       <MdMenu />
     </HeaderMenu>
   </HeaderContainer>
 )
 const Events = () => (
-  <>
-    <BackgroundImageContainer>
-      <ImageThing />
-    </BackgroundImageContainer>
+  <div>
     <EventsContainer>
       <Header />
-      <EventsHeader>events</EventsHeader>
       <EventsListContainer>
         <EventsList eventsPerPage={4} />
       </EventsListContainer>
     </EventsContainer>
-  </>
+  </div>
 )
 
 export default Events

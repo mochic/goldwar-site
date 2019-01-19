@@ -15,7 +15,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import AudioPlayer from './src/components/Audio'
 import { HowlProvider } from './src/components/Howl.context'
-
+import ImageThing from './src/components/ImageThing'
 // import ScrollingLayoutThing from './src/components/ScrollingLayoutThing'
 
 const BlackoutTheme = {
@@ -29,7 +29,7 @@ const BlackoutTheme = {
     highlight: '#FFFDDA',
   },
   fonts: {
-    primary: 'sue ellen francisco',
+    primary: `frijole`,
   },
   sizes: {
     actionButton: { height: 52, width: 52 },
@@ -45,6 +45,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  svg {
+    filter: none !important;
+  }
 `
 
 const FloatingAudioContainer = styled.div`
@@ -54,6 +57,69 @@ const FloatingAudioContainer = styled.div`
   width: 165px;
 `
 
+const BackgroundImageContainer = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+`
+
+const HeaderMenu = styled.button`
+  border: none;
+  background: none;
+  color: ${props => props.theme.colors.highlight};
+  font-family: ${props => props.theme.fonts.primary};
+  font-size: 18px;
+  justify-content: center;
+  padding: 2%;
+`
+
+const HeaderTitle = styled.div`
+  color: ${props => props.theme.colors.highlight};
+  font-family: ${props => props.theme.fonts.primary};
+  font-size: 36px;
+  text-transform: capitalize;
+  padding: 2%;
+`
+
+const HomeLink = styled.div`
+  color: ${props => props.theme.colors.highlight};
+  font-family: ${props => props.theme.fonts.primary};
+`
+
+const HeaderContainer = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  left: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+`
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Header = ({ location: { pathName } }) => {
+  console.log('current pathName', pathName)
+  return (
+    <HeaderContainer>
+      {pathName ? (
+        <>
+          <HomeLink>goldwar</HomeLink>
+          <HeaderTitle>events</HeaderTitle>
+        </>
+      ) : (
+        <></>
+      )}
+      <HeaderMenu>menu</HeaderMenu>
+    </HeaderContainer>
+  )
+}
 const Transition = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
   exit: { opacity: 0 },
@@ -87,12 +153,18 @@ export const replaceComponentRenderer = ({ props, ...other }) => (
       >
         <PoseGroup>
           <Transition key={props.location.key}>
-            {React.createElement(props.pageResources.component, props)}
+            <PageContainer>
+              {/* <Header location={props.location} /> */}
+              {React.createElement(props.pageResources.component, props)}
+              <FloatingAudioContainer>
+                <AudioPlayer />
+              </FloatingAudioContainer>
+              <BackgroundImageContainer>
+                <ImageThing />
+              </BackgroundImageContainer>
+            </PageContainer>
           </Transition>
         </PoseGroup>
-        <FloatingAudioContainer>
-          <AudioPlayer />
-        </FloatingAudioContainer>
       </HowlProvider>
     </ThemeProvider>
   </div>
