@@ -53,6 +53,7 @@ const DrunkLogoContainer = styled.div`
   padding-left: 20px;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
     0 0 10px rgba(255, 255, 255, 0.5);
+  margin-left: 2%;
 `
 
 // const NavListContainer = styled.ul`
@@ -99,6 +100,8 @@ const NavListItem = ({ link: { link, name } }) => {
 
 const NavListContainerContainer = styled.div`
   padding-left: 26px;
+  margin-top: 20%;
+  margin-left: 2%;
 `
 
 const SocialMediaContainer = styled.div`
@@ -121,6 +124,20 @@ const SocialMediaListItemContainer = styled.li`
   margin-top: 5%;
 `
 
+const Social = styled.div`
+  align-content: center;
+  color: ${props => props.theme.colors.highlight};
+  display: flex;
+  justify-content: space-between;
+  padding-left: 8%;
+  padding-right: 8%;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
+    0 0 10px rgba(255, 255, 255, 0.5);
+  font-family: karla;
+`
+const SocialItem = styled.div``
+const SocialDivider = styled.div``
+
 const NavList = () => {
   return (
     <NavListContainerContainer>
@@ -128,29 +145,10 @@ const NavList = () => {
         <NavListItem link={{ link: '/events', name: 'events' }} />
         <NavListItem link={{ link: '/about', name: 'about' }} />
         <NavListItem link={{ link: '/contact', name: 'contact' }} />
-        <SocialMediaListItemContainer>
-          <FaFacebookF />
-          <FaTwitter />
-          <FaInstagram />
-        </SocialMediaListItemContainer>
       </NavListContainer>
     </NavListContainerContainer>
   )
 }
-
-// animation: ${SquiggleFrames} 1s infinite;
-const LogosContainer = styled.div`
-  ${LogoContainer} {
-    top: 0px;
-    left: 0px;
-    position: absolute;
-  }
-  ${DrunkLogoContainer} {
-    top: 0px;
-    left: 0px;
-    position: absolute;
-  }
-`
 
 const PageContainer = styled.div`
   align-content: center;
@@ -169,8 +167,8 @@ const LandingContents = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-top: 8%;
-  padding-top: 18%;
-  padding-bottom: 7%;
+  padding-top: 10%;
+  padding-bottom: 2%;
   box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
     0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
 `
@@ -193,6 +191,13 @@ const IndexPage = () => {
           <DrunkLogoContainer>GOLDWAR</DrunkLogoContainer>
         </DriftingContainer>
         <NavList />
+        <Social>
+          <SocialItem>facebook</SocialItem>
+          <SocialItem>|</SocialItem>
+          <SocialItem>instagram</SocialItem>
+          <SocialItem>|</SocialItem>
+          <SocialItem>twitter</SocialItem>
+        </Social>
       </LandingContents>
     </PageContainer>
   )
