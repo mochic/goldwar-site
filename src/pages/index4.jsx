@@ -95,7 +95,7 @@ const PageContainer = styled.div`
 
 const LandingContents = styled.div`
   background: black;
-  height: 56vh;
+  height: 72vh;
   width: 90vw;
   display: flex;
   flex-direction: column;
