@@ -6,13 +6,6 @@ import PlayToggle from './PlayToggle'
 import ProgressBar from './ProgressBar'
 import TrackTitle from './TrackTitle'
 
-const ControlContainer = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-`
-
 const ButtonsContainer = styled.div`
   align-items: center;
   display: flex;
@@ -23,11 +16,16 @@ const ButtonsContainer = styled.div`
   }
 ` // we kinda just assume they're buttons :(...
 
-const PlayerContainer = styled.div`
+export const PlayerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  opacity: 0.5;
-  z-index: 1000;
+`
+
+const ControlContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `
 
 export default () => (

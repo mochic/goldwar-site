@@ -5,7 +5,7 @@ import { MdPlayArrow } from 'react-icons/md'
 import { HowlConsumer } from '../Howl.context'
 
 const PlayArrow = styled(MdPlayArrow)`
-  color: yellow;
+  color: ${props => props.theme.colors.highlight};
 `
 
 const PlayButton = styled(IconButton)``

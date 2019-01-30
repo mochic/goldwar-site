@@ -5,7 +5,7 @@ import { MdPause } from 'react-icons/md'
 import { HowlConsumer } from '../Howl.context'
 
 const Pause = styled(MdPause)`
-  color: yellow;
+  color: ${props => props.theme.colors.highlight};
 `
 
 const PauseButton = styled(IconButton)``

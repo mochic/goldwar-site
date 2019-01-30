@@ -6,7 +6,7 @@ import { IconButton } from './Shared'
 import { HowlConsumer } from '../Howl.context'
 
 const FastForward = styled(MdFastForward)`
-  color: yellow;
+  color: ${props => props.theme.colors.highlight};
 `
 
 const NextButton = styled(IconButton)``

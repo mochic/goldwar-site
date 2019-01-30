@@ -1,17 +1,19 @@
-// import React from 'react'
-// import styled from 'styled-components'
-// import posed from 'react-pose'
+import React from 'react'
+import styled from 'styled-components'
+import posed from 'react-pose'
 
-// const Event
+const StaggeredContainer = posed.div({})
 
-// const StaggeredContainer = posed.div({})
+const EventContainer = styled(StaggeredContainer)``
 
-// const PageContainer = styled(StaggeredContainer)``
+const StaggeredParentContainer = posed.div({})
 
-// export default () => {
-//     return (
-//         <PageContainer>
+const PageContainer = styled(StaggeredContainer)``
 
-//         </PageContainer>
-//     )
-// }
+export default () => {
+    return (
+        <PageContainer>
+            
+        </PageContainer>
+    )
+}

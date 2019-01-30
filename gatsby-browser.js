@@ -13,9 +13,10 @@ import navigate from 'gatsby'
 import posed, { PoseGroup } from 'react-pose'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import AudioPlayer from './src/components/Audio'
+import AudioPlayer, { PlayerContainer } from './src/components/Audio'
 import { HowlProvider } from './src/components/Howl.context'
 import ImageThing from './src/components/ImageThing'
+import SocialThings, { SocialContainer } from './src/components/SocialThings'
 // import ScrollingLayoutThing from './src/components/ScrollingLayoutThing'
 
 const BlackoutTheme = {
@@ -51,10 +52,22 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const FloatingAudioContainer = styled.div`
-  bottom: 8px;
-  left: 8px;
+  bottom: 0px;
+  left: 0px;
+  padding: 1%;
   position: fixed;
-  width: 165px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  ${PlayerContainer} {
+    width: 45%;
+  }
+  ${SocialContainer} {
+    width: 25%;
+  }
 `
 
 const BackgroundImageContainer = styled.div`
@@ -156,9 +169,10 @@ export const replaceComponentRenderer = ({ props, ...other }) => (
             <PageContainer>
               {/* <Header location={props.location} /> */}
               {React.createElement(props.pageResources.component, props)}
-              <FloatingAudioContainer>
+              {/* <FloatingAudioContainer>
                 <AudioPlayer />
-              </FloatingAudioContainer>
+                <SocialThings />
+              </FloatingAudioContainer> */}
               <BackgroundImageContainer>
                 <ImageThing />
               </BackgroundImageContainer>

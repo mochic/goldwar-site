@@ -262,6 +262,7 @@ module.exports = {
           `montserrat`,
           `b612 mono`,
           `roboto mono`,
+          `roboto`,
         ],
       },
     },

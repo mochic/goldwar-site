@@ -4,31 +4,31 @@ import { Link, navigate } from 'gatsby'
 import styled, { keyframes } from 'styled-components'
 import posed from 'react-pose'
 
+import FAB from '../components/FABAudio'
+
 const DrunkLogoContainer = styled.div`
   align-items: center;
   color: ${props => props.theme.colors.highlight};
   display: flex;
-  font-family: ${props => props.theme.fonts.primary};
   font-size: 36px;
   justify-content: left;
   padding-left: 20px;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
-    0 0 10px rgba(255, 255, 255, 0.5);
   margin-left: 2%;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
 `
 
 const NavListContainer = styled.ul`
   margin-top: 120px;
   list-style-type: none;
   padding-left: 0px;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
-    0 0 10px rgba(255, 255, 255, 0.5);
 `
 
 const NavListItemContainer = styled.li`
   color: ${props => props.theme.colors.highlight};
-  font-family: frijole;
   font-size: 24px;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
 `
 
 const LinkThing = styled(Link)`
@@ -94,8 +94,20 @@ const PageContainer = styled.div`
   opacity: 0.9;
 `
 
+const fontFamilyList = [
+  `sriracha`,
+  `sue ellen francisco`,
+  `major mono display`,
+  `karla`,
+  `work sans`,
+  `monoton`,
+  `frijole`,
+  `montserrat`,
+  `b612 mono`,
+  `roboto mono`,
+]
+
 const LandingContents = styled.div`
-  background: black;
   height: 72vh;
   width: 90vw;
   display: flex;
@@ -104,7 +116,7 @@ const LandingContents = styled.div`
   margin-top: 8%;
   padding-top: 10%;
   padding-bottom: 2%;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  font-family: 'roboto mono';
 `
 
 const DriftingContainer = posed.div({
@@ -125,13 +137,14 @@ const IndexPage = () => {
           <DrunkLogoContainer>GOLDWAR</DrunkLogoContainer>
         </DriftingContainer>
         <NavList />
-        <Social>
+        <FAB />
+        {/* <Social>
           <SocialItem>facebook</SocialItem>
           <SocialDivider />
           <SocialItem>instagram</SocialItem>
           <SocialDivider />
           <SocialItem>twitter</SocialItem>
-        </Social>
+        </Social> */}
       </LandingContents>
     </PageContainer>
   )
