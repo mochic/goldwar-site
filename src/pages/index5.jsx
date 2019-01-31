@@ -117,6 +117,7 @@ const LandingContents = styled.div`
   padding-top: 10%;
   padding-bottom: 2%;
   font-family: 'roboto mono';
+  margin-bottom: 70%;
 `
 
 const DriftingContainer = posed.div({
@@ -137,7 +138,7 @@ const IndexPage = () => {
           <DrunkLogoContainer>GOLDWAR</DrunkLogoContainer>
         </DriftingContainer>
         <NavList />
-        <FAB />
+        {/* <FAB /> */}
         {/* <Social>
           <SocialItem>facebook</SocialItem>
           <SocialDivider />

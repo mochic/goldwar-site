@@ -13,11 +13,22 @@ import navigate from 'gatsby'
 import posed, { PoseGroup } from 'react-pose'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import AudioPlayer, { PlayerContainer } from './src/components/Audio'
+// import AudioPlayer, { PlayerContainer } from './src/components/Audio'
 import { HowlProvider } from './src/components/Howl.context'
 import ImageThing from './src/components/ImageThing'
 import SocialThings, { SocialContainer } from './src/components/SocialThings'
 // import ScrollingLayoutThing from './src/components/ScrollingLayoutThing'
+import AudioPlayer from './src/components/AudioPlayerThing'
+
+const AudioPlayerContainer = styled.div`
+  bottom: 0;
+  left: 0;
+  max-height: 50%;
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+`
 
 const BlackoutTheme = {
   background: '#A35558',
@@ -51,24 +62,24 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const FloatingAudioContainer = styled.div`
-  bottom: 0px;
-  left: 0px;
-  padding: 1%;
-  position: fixed;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+// const FloatingAudioContainer = styled.div`
+//   bottom: 0px;
+//   left: 0px;
+//   padding: 1%;
+//   position: fixed;
+//   display: flex;
+//   width: 100%;
+//   align-items: center;
+//   justify-content: space-between;
+//   box-sizing: border-box;
 
-  ${PlayerContainer} {
-    width: 45%;
-  }
-  ${SocialContainer} {
-    width: 25%;
-  }
-`
+//   ${PlayerContainer} {
+//     width: 45%;
+//   }
+//   ${SocialContainer} {
+//     width: 25%;
+//   }
+// `
 
 const BackgroundImageContainer = styled.div`
   position: fixed;
@@ -77,6 +88,7 @@ const BackgroundImageContainer = styled.div`
   z-index: -1;
   height: 100%;
   width: 100%;
+  background: ${props => props.theme.colors.primary};
 `
 
 const HeaderMenu = styled.button`
@@ -173,6 +185,9 @@ export const replaceComponentRenderer = ({ props, ...other }) => (
                 <AudioPlayer />
                 <SocialThings />
               </FloatingAudioContainer> */}
+              <AudioPlayerContainer>
+                <AudioPlayer />
+              </AudioPlayerContainer>
               <BackgroundImageContainer>
                 <ImageThing />
               </BackgroundImageContainer>

@@ -49,7 +49,7 @@ const PanningKeyFrames = keyframes`
 //     }
 // `
 const PanningImage = styled(Img)`
-  animation: ${PanningKeyFrames} 10s infinite;
+  animation: ${PanningKeyFrames} 100s infinite;
 `
 
 const query = graphql`
