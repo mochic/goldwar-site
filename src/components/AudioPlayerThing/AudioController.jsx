@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import styled from 'styled-components'
-import { MdVolumeDown, MdVolumeUp } from 'react-icons/md'
+import { debounce } from 'lodash-es'
+
+// material ui stuff
+import VolumeUpIcon from '@material-ui/icons/VolumeUp'
+import VolumeMuteIcon from '@material-ui/icons/VolumeMute'
+import { ThemeProvider, makeStyles } from '@material-ui/styles'
+
+import Slider from '@material-ui/lab/Slider'
+// import IconButton from '@material-ui/core/IconButton'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    background: theme.background,
+    border: 0,
+    borderRadius: 3,
+    boxShadow: theme.boxShadow,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+  trackBefore: {
+    color: `green`,
+  },
+  trackAfter: {
+    color: `green`,
+  },
+}))
 
 const AudioControllerContainer = styled.div`
   background: ${props => props.theme.colors.primary};
@@ -9,58 +35,84 @@ const AudioControllerContainer = styled.div`
   display: flex;
   justify-content: stretch;
   width: 100%;
+  align-items: center;
 `
 
-const VolumeDown = styled(MdVolumeDown)``
-const VolumeUp = styled(MdVolumeUp)``
+const VolumeDown = styled(VolumeMuteIcon)``
+// my linter is causing problems with camelcase + template strings
+// const VolumeInput = styled(Slider)({
+//   paddingLeft: `5%`,
+//   paddingRight: `5%`,
+//   track: props => props.theme.colors.secondary,
+//   trackBefore: props => props.theme.colors.secondary,
+//   trackAfter: props => props.theme.colors.highlight,
+// })
 
-const VolumeInput = styled.input`
-  -webkit-appearance: none;
-  background: transparent;
-  width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
+// ({
+//     paddingLeft: `5%`,
+//     paddingRight: `5%`,
+//     track: props => props.theme.colors.secondary,
+//     trackBefore: props => props.theme.colors.secondary,
+//     trackAfter: props => props.theme.colors.highlight,
 
-  &:focus {
-    outline: none;
-  }
+const VolumeSlider = styled(Slider)`
+  padding-left: 5%;
+  padding-right: 5%;
+  cursor: pointer;
 
-  &::-ms-track {
-    background: ${props => props.theme.colors.highlight};
-    border-color: transparent;
-    color: transparent;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background: ${props => props.theme.colors.secondary};
-    height: 18px;
-    width: 18px;
-    margin-top: -8px;
-    border-radius: 99px;
-  }
-
-  &::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 4px;
-    background: ${props => props.theme.colors.highlight};
+  .root.trackBefore {
+    background: green;
+    color: red;
   }
 `
-// const VolumeInput = styled.input`
-//   -webkit-appearance: none;
-//   background: transparent;
-// `
 
-const AudioControllerComponent = () => (
-  <AudioControllerContainer>
-    <VolumeDown />
-    <VolumeInput id="volume-input" type="range" min="0" max="100" step="1" />
-    <VolumeUp />
-  </AudioControllerContainer>
-)
+class VolumeInput extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      volume: props.value | 50,
+    }
+  }
 
+  handleChange = (event, value) => {
+    this.setState({
+      volume: value,
+    })
+  }
+
+  render = () => {
+    // console.log(debounce)
+    // console.log(this.props)
+    const sliderProps = {
+      ...this.props,
+      value: this.state.volume,
+      onChange: this.handleChange, // debounce might be bad here...throwing lots of errors...
+    } // this is kinda complicated and look convoluted but i think...TODO make it better...
+    return (
+      <VolumeSlider
+        // InputProps={{ classes: { root: 'root', trackBefore: 'trackBefore' } }}
+        {...sliderProps}
+      />
+    )
+  }
+}
+// const VolumeInput = props => {
+//   let volume = React.createRef()
+//   return
+// }
+
+const VolumeUp = styled(VolumeUpIcon)``
+
+const AudioControllerComponent = props => {
+  console.log(props)
+  return (
+    <AudioControllerContainer>
+      <VolumeDown />
+      <VolumeInput value={50} />
+      <VolumeUp />
+    </AudioControllerContainer>
+  )
+}
 export default ({ isMuted, unmute, mute, lowerVolume, raiseVolume }) => (
   <AudioControllerComponent />
 )

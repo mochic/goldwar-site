@@ -8,6 +8,13 @@
 // based on: https://github.com/VilhelmNielsen/gatsby-with-react-pose/blob/master/gatsby-browser.js
 import React, { Component } from 'react'
 
+// needs to occur before anything else mui to use styled-components + mui
+// import { install } from '@material-ui/styles'
+
+// install()
+
+/*eslint-disable import/first */
+
 import { MdMenu } from 'react-icons/md'
 import navigate from 'gatsby'
 import posed, { PoseGroup } from 'react-pose'
@@ -19,6 +26,8 @@ import ImageThing from './src/components/ImageThing'
 import SocialThings, { SocialContainer } from './src/components/SocialThings'
 // import ScrollingLayoutThing from './src/components/ScrollingLayoutThing'
 import AudioPlayer from './src/components/AudioPlayerThing'
+
+/*eslint-enable */
 
 const AudioPlayerContainer = styled.div`
   bottom: 0;
