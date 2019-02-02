@@ -13,6 +13,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import PauseIcon from '@material-ui/icons/Pause'
 // import classNames from 'classnames'
 // import { withStyles } from '@material-ui/core/styles'
+import PlayBackController from './PlayBackController'
 
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
@@ -135,7 +136,7 @@ const AudioControllerContainer = styled.div`
 const PlayerComponent = ({ isPlaying }) => {
   return (
     <>
-      {/* <ProgressBar /> */}
+      <PlayBackController />
       <TrackControlsContainer>
         <PreviousTrackButton>
           <PreviousTrackIcon />

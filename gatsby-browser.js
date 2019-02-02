@@ -57,6 +57,8 @@ const BlackoutTheme = {
   },
 }
 
+const MuiTheme = {}
+
 const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;

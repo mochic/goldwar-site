@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import posed from 'react-pose'
 
+import Paper from '@material-ui/core/Paper'
+
 import { MdVolumeOff, MdVolumeUp } from 'react-icons/md'
 
 import { HowlConsumer } from '../Howl.context'
@@ -10,13 +12,14 @@ import { HowlConsumer } from '../Howl.context'
 // TODO figure out way better names...
 
 const TrackTitle = styled.h1`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.highlight};
   font-size: 140%;
 `
 
-const DescriptionContainer = styled.div`
-  background: ${props => props.theme.colors.primary};
-  padding: 10% 0% 10% 20%;
+// !important necessary for easily overriding background
+const DescriptionContainer = styled(Paper)`
+  background: ${props => props.theme.colors.primary} !important;
+  padding: 2% 0% 2% 20%;
   height: ${props => (props.expanded ? 30 : 10)}%;
 `
 
@@ -89,7 +92,7 @@ class SubPlayerComponent extends Component {
   render = () => {
     return (
       <>
-        <DescriptionContainer expanded={this.props.expanded}>
+        <DescriptionContainer elevation={8}>
           <TrackTitle>{this.props.trackTitle}</TrackTitle>
         </DescriptionContainer>
         <SummaryContainer>
