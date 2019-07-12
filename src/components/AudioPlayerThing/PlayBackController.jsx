@@ -18,7 +18,7 @@ const ThemeOverrider = theme => {
           backgroundColor: `#a25457`,
         },
         trackAfter: {
-          backgroundColor: `none`,
+          backgroundColor: `#a25457`,
         },
       },
     },
@@ -27,17 +27,21 @@ const ThemeOverrider = theme => {
 
 const PlayBackSliderComponentContainer = styled.div`
   display: flex;
-  width: 100%;
+  align-content: center;
 `
 
 const PlayBackText = styled.div`
   margin-left: 10%;
-  width: 20%;
-  color: ${props => props.theme.colors.highlight};
+  width: 30%;
+  color: ${props => props.theme.colors.secondary};
+  font-family: 'roboto mono';
+  background: blue;
 `
 
-const PlayBackSlider = styled(Slider)`
-  width: 70%;
+const PlayBackSlider = styled(Slider)``
+
+const SliderContainer = styled.div`
+  width: 50%;
 `
 
 class PlayBackControllerComponent extends Component {
@@ -49,7 +53,9 @@ class PlayBackControllerComponent extends Component {
     return (
       <MuiThemeProvider theme={ThemeOverrider}>
         <PlayBackSliderComponentContainer>
-          <PlayBackSlider />
+          <SliderContainer>
+            <PlayBackSlider />
+          </SliderContainer>
           <PlayBackText>{`0:00`}</PlayBackText>
         </PlayBackSliderComponentContainer>
       </MuiThemeProvider>

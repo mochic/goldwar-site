@@ -21,6 +21,7 @@ import SubPlayer from './SubPlayer'
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import Fab from '@material-ui/core/Fab'
+import Fade from '@material-ui/core/Fade'
 import Grow from '@material-ui/core/Grow'
 import Paper from '@material-ui/core/Paper'
 
@@ -54,42 +55,10 @@ function muiStyled(Component) {
   }
 }
 
-// const FabPlayer = muiStyled(Fab)({
-//   root: {
-//     color: 'yellow',
-//     backgroundColor: 'yellow',
-//   },
-//   primary: {
-//     color: 'yellow',
-//     backgroundColor: 'pink',
-//   },
-// })
-
-// const FabContainer = styled.div`
-//   background: red;
-// `
-
 const PlayIcon = styled(PlayArrowIcon)`
   color: ${props => props.theme.colors.secondary};
 `
 
-// const FabPlayerContainerComponent = posed.div({})
-
-// const FabPlayerContainer = styled(FabPlayerContainerComponent)``
-
-// const FabPlayer = styled(Fab)``
-
-// const ActionButtonContainerComponent = posed.div({
-//   enter: { width: 'none', opacity: 1, top: '-1.5rem', right: '0.8rem' },
-//   exit: { width: '100%', opacity: 0, top: '0rem', right: '0rem' },
-// })
-
-// const ActionButtonContainer = styled(ActionButtonContainerComponent)`
-//   background: red;
-//   position: absolute;
-//   display: flex;
-//   width: 100%;
-// `
 const FabPlayer = styled(Fab)``
 
 const FabPlayerPosedContainerComponent = posed.div({
@@ -107,50 +76,19 @@ const FabPlayerContainerComponent = posed.div({
 
 const FabPlayerContainer = styled(FabPlayerContainerComponent)``
 
-// const FabPlayerContainerComponent = styled(Fab)``
-
-// cannot use posed() on a component easily so wrapping in div
-// const FabPlayerContainerComponent = posed.div({
-
-// })
-
-// const FabPlayerComponent = posed(Fab)({})
-
-// const ActionButtonContainerComponent = posed.div({
-//   enter: { width: 'none', opacity: 1, top: '-1.5rem', right: '0.8rem' },
-//   exit: { width: '100%', opacity: 0, top: '0rem', right: '0rem' },
-// })
-
 const ActionButtonContainerComponent = posed.div({
-  enter: { delay: 300 },
-  exit: { delay: 300 },
+  transition: {
+    default: { duration: 3000 },
+  },
 })
 
 const ActionButtonContainer = styled(ActionButtonContainerComponent)`
   width: 100%;
 `
-
-// const FabContainerComponent = posed.div({
-//   enter: { opacity: 1 },
-//   exit: { opacity: 0 },
-// })
-
-// const FabContainer = styled(FabContainComponent)`
-//   margin-right: 100px;
-// `
-
 const PlayContainerComponent = posed.div({
   enter: { delay: 300, staggerChildren: true },
   exit: { delay: 30000 },
 })
-
-// const PlayerContainer = styled(PlayContainerComponent)`
-//   background: ${props => props.theme.colors.primary};
-//   display: flex;
-//   flex-direction: column;
-//   font-size: 22px;
-//   align-items: center;
-// `
 
 const PlayerContainer = styled(Paper)``
 
@@ -160,19 +98,6 @@ const SubPlayerContainer = styled.div`
   font-family: 'roboto mono';
 `
 console.log('theme', createMuiTheme)
-// const theme = {
-//   background: 'pink',
-//   palette: {
-//     primary: yellow,
-//   },
-//   overrides: {
-//     MuiFab: {
-//       primary: {
-//         main: 'pink',
-//       },
-//     },
-//   },
-// }
 
 const theme = {
   background: 'pink',
@@ -202,6 +127,7 @@ const MuiTheme = createMuiTheme({
     },
   },
 })
+
 console.log(MuiTheme)
 // another try
 const useStyles = makeStyles(theme => ({
@@ -260,15 +186,17 @@ class AudioPlayerThing extends Component {
     return (
       <>
         <MuiThemeProvider theme={MuiTheme}>
-          <PoseGroup>
-            <FabPlayerContainer key="player">
-              {this.state.expanded ? (
-                <Grow in={this.state.expanded}>
-                  <PlayerContainer>
-                    <Player />
-                  </PlayerContainer>
-                </Grow>
-              ) : (
+          <FabPlayerContainer key="player">
+            <Grow
+              in={this.state.expanded}
+              style={{ transformOrigin: 'top right' }}
+            >
+              <PlayerContainer>
+                <Player />
+              </PlayerContainer>
+            </Grow>
+            <PoseGroup>
+              <Fade in={!this.state.expanded}>
                 <ActionButtonContainer key="action-button">
                   <FabPlayerPosedContainer>
                     <FabPlayer onClick={this.triggerExpanded} color="primary">
@@ -276,9 +204,9 @@ class AudioPlayerThing extends Component {
                     </FabPlayer>
                   </FabPlayerPosedContainer>
                 </ActionButtonContainer>
-              )}
-            </FabPlayerContainer>
-          </PoseGroup>
+              </Fade>
+            </PoseGroup>
+          </FabPlayerContainer>
           <SubPlayerContainer>
             <SubPlayer expanded={this.state.expanded} />
           </SubPlayerContainer>
@@ -293,7 +221,7 @@ class AudioPlayerThing extends Component {
 
   static defaultProps = {
     expanded: false,
-    closeDelay: 20000,
+    closeDelay: 2000,
   }
 }
 

@@ -7,8 +7,28 @@ import { debounce } from 'lodash-es'
 import VolumeUpIcon from '@material-ui/icons/VolumeUp'
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute'
 import { ThemeProvider, makeStyles } from '@material-ui/styles'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 
 import Slider from '@material-ui/lab/Slider'
+
+const ThemeOverrider = theme => {
+  return createMuiTheme({
+    ...theme,
+    overrides: {
+      MuiSlider: {
+        thumb: {
+          backgroundColor: `#a25457`,
+        },
+        trackBefore: {
+          backgroundColor: `#a25457`,
+        },
+        trackAfter: {
+          backgroundColor: `#a25457`,
+        },
+      },
+    },
+  })
+}
 // import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles(theme => ({
@@ -30,7 +50,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const AudioControllerContainer = styled.div`
-  background: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.secondary};
   display: flex;
   justify-content: stretch;
@@ -39,31 +58,11 @@ const AudioControllerContainer = styled.div`
 `
 
 const VolumeDown = styled(VolumeMuteIcon)``
-// my linter is causing problems with camelcase + template strings
-// const VolumeInput = styled(Slider)({
-//   paddingLeft: `5%`,
-//   paddingRight: `5%`,
-//   track: props => props.theme.colors.secondary,
-//   trackBefore: props => props.theme.colors.secondary,
-//   trackAfter: props => props.theme.colors.highlight,
-// })
-
-// ({
-//     paddingLeft: `5%`,
-//     paddingRight: `5%`,
-//     track: props => props.theme.colors.secondary,
-//     trackBefore: props => props.theme.colors.secondary,
-//     trackAfter: props => props.theme.colors.highlight,
 
 const VolumeSlider = styled(Slider)`
   padding-left: 5%;
   padding-right: 5%;
   cursor: pointer;
-
-  .root.trackBefore {
-    background: green;
-    color: red;
-  }
 `
 
 class VolumeInput extends Component {
@@ -106,11 +105,13 @@ const VolumeUp = styled(VolumeUpIcon)``
 const AudioControllerComponent = props => {
   console.log(props)
   return (
-    <AudioControllerContainer>
-      <VolumeDown />
-      <VolumeInput value={50} />
-      <VolumeUp />
-    </AudioControllerContainer>
+    <MuiThemeProvider theme={ThemeOverrider}>
+      <AudioControllerContainer>
+        <VolumeDown />
+        <VolumeInput value={50} />
+        <VolumeUp />
+      </AudioControllerContainer>
+    </MuiThemeProvider>
   )
 }
 export default ({ isMuted, unmute, mute, lowerVolume, raiseVolume }) => (

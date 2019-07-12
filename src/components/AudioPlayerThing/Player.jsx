@@ -42,13 +42,6 @@ import AudioController from './AudioController'
 //   }
 // }
 
-const TrackControlsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 7%;
-  width: 74%;
-`
-
 // const NextTrackButton = styled.button`
 //   background: none;
 //   border: none;
@@ -131,12 +124,28 @@ const AudioControllerContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 70%;
+  background: pink;
+`
+
+const PlayBackControllerContainer = styled.div`
+  background: green;
+  width: 70%;
+`
+
+const TrackControlsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 7%;
+  width: 74%;
+  background: yellow;
 `
 
 const PlayerComponent = ({ isPlaying }) => {
   return (
     <>
-      <PlayBackController />
+      <PlayBackControllerContainer>
+        <PlayBackController />
+      </PlayBackControllerContainer>
       <TrackControlsContainer>
         <PreviousTrackButton>
           <PreviousTrackIcon />
